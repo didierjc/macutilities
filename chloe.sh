@@ -12,6 +12,24 @@ Log(){
 	mkdir /tmp
 }
 
+Stats(){
+	echo -e "Getting local IP Address\n" && echo $( date +"%m/%d/%Y_%H:%M:%S" ) >> $LOG_FILE
+	echo "Start Time: " $( date +"%m/%d/%Y_%H:%M:%S" )
+	ipconfig getifaddr en0
+	ipconfig getifaddr en1
+	echo "End Time: " $( date +"%m/%d/%Y_%H:%M:%S" )
+
+	echo -e "Executing command: sysctl -n machdep.cpu.brand_string\n" && echo $( date +"%m/%d/%Y_%H:%M:%S" ) >> $LOG_FILE
+	echo "Start Time: " $( date +"%m/%d/%Y_%H:%M:%S" )
+	sysctl -n machdep.cpu.brand_string
+	echo "End Time: " $( date +"%m/%d/%Y_%H:%M:%S" )
+
+	echo -e "Executing command: system_profiler\n\n" && echo $( date +"%m/%d/%Y_%H:%M:%S" ) >> $LOG_FILE
+	echo "Start Time: " $( date +"%m/%d/%Y_%H:%M:%S" ) 
+	system_profiler
+	echo "End Time: " $( date +"%m/%d/%Y_%H:%M:%S" )
+}
+
 Prep(){
 	clear # clear the screen
 	echo -e "Preparing machine...\n" && echo $( date +"%m/%d/%Y_%H:%M:%S" ) " Preparing machine..." >> $LOG_FILE
